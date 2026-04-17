@@ -3,6 +3,7 @@
 
 #include <unordered_map>
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -17,6 +18,7 @@ public:
     unordered_map<int, vector<Edge>> adj;
 
     void addEdge(int u, int v, double amount, int time);
+    void loadFromCSV(const string &edgesPath);
 };
 
 #endif
