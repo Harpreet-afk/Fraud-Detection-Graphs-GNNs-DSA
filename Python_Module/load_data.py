@@ -12,6 +12,12 @@ def load_data():
     # Node features: all columns except 'node'
     x = torch.tensor(features.iloc[:, 1:].values, dtype=torch.float)
 
+    # Normalize features (Z-score normalization)
+    x_mean = x.mean(dim=0, keepdim=True)
+    x_std = x.std(dim=0, keepdim=True)
+    x_std[x_std == 0] = 1.0  # Prevent division by zero
+    x = (x - x_mean) / x_std
+
     # Edge index
     edge_index = torch.tensor(edges.values.T, dtype=torch.long)
 

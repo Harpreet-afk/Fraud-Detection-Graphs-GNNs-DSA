@@ -15,7 +15,7 @@ void computeHeuristicScores(unordered_map<int, Features> &fmap) {
         max_deg = max(max_deg, f.degree);
         max_pr = max(max_pr, f.pagerank);
         max_cluster = max(max_cluster, f.clustering);
-        max_freq = max(max_freq, f.txn_freq);
+        max_freq = max(max_freq, f.tx_frequency);
     }
 
     // Compute heuristic score
@@ -23,7 +23,7 @@ void computeHeuristicScores(unordered_map<int, Features> &fmap) {
         double deg_norm = normalize(f.degree, 0, max_deg);
         double pr_norm = normalize(f.pagerank, 0, max_pr);
         double cluster_norm = normalize(f.clustering, 0, max_cluster);
-        double freq_norm = normalize(f.txn_freq, 0, max_freq);
+        double freq_norm = normalize(f.tx_frequency, 0, max_freq);
 
         // Weighted scoring (tune these weights later)
         double score =
